@@ -2,12 +2,7 @@
 {% block title %}Patroller Sign On{% endblock %}
 {% block content %}
 
-    <p>
-      {{ message | safe }}
-    </p>
-    {% if message|length == 0%}
-
-    <form class="form-horizontal" method="post" action="activity">
+    <form class="form-horizontal" method="post" action="/activity">
     <fieldset>
 
     <!-- Form Name -->
@@ -20,18 +15,18 @@
 
     <!-- Text input-->
     <div class="form-group">
-      <label for="patroller-name">Select Patroller</label>
-      <select class="form-control" name="patroller-name" id="patroller-name" size="{{ Patroller.select().count() }}">
-        {% for patroller in Patroller.select() %}
-          <option>{{ patroller.name }}</option>
+      <label for="patroller-id">Select Patroller</label>
+      <select class="form-control" name="patroller-id" id="patroller-id">
+        {% for patroller in Patrollers %}
+          <option value="{{patroller.id }}">{{ patroller.name }}</option>
         {% endfor %}
       </select>
     </div>
 
     <div class="form-group">
       <label for="location-name">Select Location</label>
-      <select class="form-control" name="location-name" id="location-name" size="{{ Location.select().count() }}">
-        {% for location in Location.select() %}
+      <select class="form-control" name="location-name" id="location-name">
+        {% for location in Locations %}
           <option>{{ location.name }}</option>
         {% endfor %}
       </select>
@@ -59,13 +54,13 @@
 
     <!-- Show patrollers by location -->
     <div class="row">
-      {% for location in registered.keys() %}
+      {% for location in active_patrollers %}
       <div class="col-md-3">
         <label>{{ location }}</label>
         <div class="well">
-          {% for p in registered[location] %}
-            <p>{{ p.patroller.name }}
-              {% if p.is_leader %}
+          {% for patroller in active_patrollers[location] %}
+            <p>{{ patroller.name }} {{ patroller.is_leader }}
+              {% if patroller.is_leader %}
                 <span class="glyphicon glyphicon-star"></span>
               {% endif %}</p>
           {% endfor %}
@@ -73,7 +68,5 @@
       </div>
       {% endfor %}
     </div>
-
-    {% endif %}
 
 {% endblock %}

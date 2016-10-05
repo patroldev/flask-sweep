@@ -18,7 +18,7 @@
       <div class="col-md-4">
         <select id="selectbasic" name="select-location" class="form-control">
           <option value="new-location">New Location</option>
-          {% for location in locations %}
+          {% for location in Locations %}
             <option value="{{ location.name }}">{{ location.name }}</option>
           {% endfor %}
         </select>

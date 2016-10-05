@@ -18,7 +18,7 @@
       <div class="col-md-4">
         <select id="selectbasic" name="patroller-select" class="form-control">
           <option value="new-patroller">New Patroller</option>
-          {% for patroller in patrollers %}
+          {% for patroller in Patrollers %}
             <option value="{{ patroller.name }}">{{ patroller.name }}</option>
           {% endfor %}
         </select>
@@ -27,12 +27,11 @@
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Patroller Name</label>
+      <label class="col-md-4 control-label" for="name">Name</label>
       <div class="col-md-4">
-      <input id="textinput" name="patroller-name" type="text" placeholder="FirstName LastName" class="form-control input-md">
+      <input id="name" name="patroller-name" type="text" placeholder="FirstName LastName" class="form-control input-md">
       </div>
     </div>
-
     <!-- Multiple Radios -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="radios">Patroller Status</label>
@@ -45,8 +44,8 @@
     	</div>
       <div class="radio">
         <label for="radios-1">
-          <input type="radio" name="status" id="radios-1" value="voulenteer">
-          Voulenteer
+          <input type="radio" name="status" id="radios-1" value="volunteer">
+          Volunteer
         </label>
     	</div>
       <div class="radio">
